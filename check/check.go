@@ -254,7 +254,7 @@ func runAudit(audit string) (output string, err error) {
 	if len(audit) == 0 {
 		return output, err
 	}
-	cmd := exec.Command("chroot", "/host", "apiclient", "exec", "admin", "sheltie", "-c", audit)
+	cmd := exec.Command("apiclient", "exec", "admin", "sheltie", "-c", audit)
 	//cmd := exec.Command("/bin/sh")
 
 	//cmd.Stdin = strings.NewReader(audit)
