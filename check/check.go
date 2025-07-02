@@ -254,10 +254,9 @@ func runAudit(audit string) (output string, err error) {
 	if len(audit) == 0 {
 		return output, err
 	}
-	cmd := exec.Command(audit)
-	//cmd := exec.Command("/bin/sh")
+	cmd := exec.Command("/run/host-containerd/io.containerd.runtime.v2.task/default/admin/rootfs/opt/bin/bash")
 
-	//cmd.Stdin = strings.NewReader(audit)
+	cmd.Stdin = strings.NewReader(audit)
 	cmd.Stdout = &out
 	cmd.Stderr = &out
 	err = cmd.Run()
