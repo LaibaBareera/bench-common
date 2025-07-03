@@ -23,6 +23,7 @@ import (
 
 	"github.com/aquasecurity/bench-common/auditeval"
 	"github.com/aquasecurity/bench-common/log"
+	"github.com/google/shlex"
 	"go.uber.org/zap"
 )
 
@@ -254,9 +255,9 @@ func runAudit(audit string) (output string, err error) {
 	if len(audit) == 0 {
 		return output, err
 	}
-	cmd := exec.Command("/run/host-containerd/io.containerd.runtime.v2.task/default/admin/rootfs/opt/bin/bash")
-
+	cmd := exec.Command("bash")
 	cmd.Stdin = strings.NewReader(audit)
+	//cmd := exec.Command("/bin/sh")
 	cmd.Stdout = &out
 	cmd.Stderr = &out
 	err = cmd.Run()
