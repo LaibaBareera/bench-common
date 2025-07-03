@@ -23,7 +23,6 @@ import (
 
 	"github.com/aquasecurity/bench-common/auditeval"
 	"github.com/aquasecurity/bench-common/log"
-	"github.com/google/shlex"
 	"go.uber.org/zap"
 )
 
