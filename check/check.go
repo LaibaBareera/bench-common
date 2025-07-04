@@ -251,11 +251,17 @@ func runAudit(audit string) (output string, err error) {
 	defer logger.Sync() // nolint: errcheck
 
 	audit = strings.TrimSpace(audit)
+
 	if len(audit) == 0 {
 		return output, err
 	}
-	cmd := exec.Command("bash")
-	cmd.Stdin = strings.NewReader(audit)
+	args := strings.Fields(audit)
+	if len(args) == 0 {
+		return "", nil
+	}
+	cmd := exec.Command(args[0], args[1:]...)
+	//cmd := exec.Command("bash")
+	//cmd.Stdin = strings.NewReader(audit)
 	//cmd := exec.Command("/bin/sh")
 	cmd.Stdout = &out
 	cmd.Stderr = &out
